@@ -1,0 +1,26 @@
+version: "3"
+services:
+   monio1: 
+     image: minio/minio:RELEASE.2020-10-12T21-53-21Z
+     environment: 
+     - "MINIO_ACCESS_KEY=dalongdemo"
+     - "MINIO_SECRET_KEY=dalongdemo"
+     command: minio server http://monio1/exporter1 http://monio1/exporter2 http://monio1/exporter11 http://monio1/exporter12 http://monio2/exporter3 http://monio2/exporter31 http://monio2/exporter4 http://monio2/exporter41 http://monio3/exporter5 http://monio3/exporter51 http://monio3/exporter6 http://monio3/exporter61
+     ports: 
+     - "9000:9000"
+   monio2: 
+     image: minio/minio:RELEASE.2020-10-12T21-53-21Z
+     command: minio server http://monio1/exporter1 http://monio1/exporter2 http://monio1/exporter11 http://monio1/exporter12 http://monio2/exporter3 http://monio2/exporter31 http://monio2/exporter4 http://monio2/exporter41 http://monio3/exporter5 http://monio3/exporter51 http://monio3/exporter6 http://monio3/exporter61
+     environment: 
+     - "MINIO_ACCESS_KEY=dalongdemo"
+     - "MINIO_SECRET_KEY=dalongdemo"
+     ports: 
+     - "9001:9000"
+   monio3: 
+     image: minio/minio:RELEASE.2020-10-12T21-53-21Z
+     command: minio server http://monio1/exporter1 http://monio1/exporter2 http://monio1/exporter11 http://monio1/exporter12 http://monio2/exporter3 http://monio2/exporter31 http://monio2/exporter4 http://monio2/exporter41 http://monio3/exporter5 http://monio3/exporter51 http://monio3/exporter6 http://monio3/exporter61
+     environment: 
+     - "MINIO_ACCESS_KEY=dalongdemo"
+     - "MINIO_SECRET_KEY=dalongdemo"
+     ports: 
+     - "9003:9000"

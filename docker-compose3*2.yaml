@@ -1,0 +1,26 @@
+version: "3"
+services:
+   monio1: 
+     image: minio/minio
+     environment: 
+     - "MINIO_ACCESS_KEY=dalongdemo"
+     - "MINIO_SECRET_KEY=dalongdemo"
+     command: minio server http://monio1/exporter1 http://monio1/exporter2   http://monio2/exporter3   http://monio2/exporter4  http://monio3/exporter5   http://monio3/exporter6 
+     ports: 
+     - "9000:9000"
+   monio2: 
+     image: minio/minio
+     command: minio server http://monio1/exporter1 http://monio1/exporter2   http://monio2/exporter3   http://monio2/exporter4  http://monio3/exporter5   http://monio3/exporter6 
+     environment: 
+     - "MINIO_ACCESS_KEY=dalongdemo"
+     - "MINIO_SECRET_KEY=dalongdemo"
+     ports: 
+     - "9001:9000"
+   monio3: 
+     image: minio/minio
+     command: minio server http://monio1/exporter1 http://monio1/exporter2   http://monio2/exporter3   http://monio2/exporter4  http://monio3/exporter5   http://monio3/exporter6 
+     environment: 
+     - "MINIO_ACCESS_KEY=dalongdemo"
+     - "MINIO_SECRET_KEY=dalongdemo"
+     ports: 
+     - "9003:9000"
